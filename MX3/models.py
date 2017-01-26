@@ -10,36 +10,245 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
+class Bankaccountt(models.Model):
+    card_number = models.TextField(primary_key=True)
+    cvv2 = models.TextField(blank=True, null=True)
+    exp_date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    owner = models.ForeignKey('Gamert', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'django_migrations'
+        db_table = 'bankaccountt'
+
+
+class Buyt(models.Model):
+    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid')
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid')
+    date = models.DateField()
+    bank_useracc_flag = models.NullBooleanField()
+
+    class Meta:
+        managed = False
+        db_table = 'buyt'
+        unique_together = (('gid', 'gtid', 'date'),)
+
+
+class Discountt(models.Model):
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid')
+    disc_date = models.DateField()
+    disc_from = models.DateField(blank=True, null=True)
+    disc_due = models.DateField(blank=True, null=True)
+    disc_percentage = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'discountt'
+        unique_together = (('gtid', 'disc_date'),)
+
+
+class Dlct(models.Model):
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid', primary_key=True)
+    main_gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='main_gtid', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dlct'
+
+
+class Feedbackt(models.Model):
+    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid')
+    pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid')
+    date = models.DateField()
+    title = models.CharField(max_length=40, blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'feedbackt'
+        unique_together = (('gid', 'pid', 'date'),)
+
+
+class Friendshipt(models.Model):
+    gid1 = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid1')
+    gid2 = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid2')
+    date = models.DateField(blank=True, null=True)
+    status = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'friendshipt'
+        unique_together = (('gid1', 'gid2'),)
+
+
+class Gaintrophyt(models.Model):
+    tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid')
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid')
+    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid')
+    date = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gaintrophyt'
+        unique_together = (('tid', 'gtid', 'gid'),)
+
+
+class Gamert(models.Model):
+    gid = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=40, blank=True, null=True)
+    username = models.TextField(unique=True, blank=True, null=True)
+    password = models.TextField(blank=True, null=True)
+    email = models.TextField(unique=True, blank=True, null=True)
+    phone_number = models.TextField(unique=True, blank=True, null=True)
+    user_account_balance = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gamert'
+
+
+class Gamestudiot(models.Model):
+    gsid = models.IntegerField()
+    pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid')
+    name = models.CharField(unique=True, max_length=40, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gamestudiot'
+        unique_together = (('gsid', 'pid'),)
+
+
+class Gametitlet(models.Model):
+    gtid = models.IntegerField(primary_key=True)
+    name = models.CharField(unique=True, max_length=40, blank=True, null=True)
+    version = models.CharField(max_length=20, blank=True, null=True)
+    gener = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)
+    mp_support = models.NullBooleanField()
+    refund_duration = models.IntegerField(blank=True, null=True)
+    pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gametitlet'
+
+
+class Gamingdevicet(models.Model):
+    gdid = models.IntegerField(primary_key=True)
+    is_active = models.NullBooleanField()
+    owner = models.ForeignKey(Gamert, models.DO_NOTHING, blank=True, null=True)
+    regitration_date = models.DateField(blank=True, null=True)
+    registered_name = models.CharField(max_length=40, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'gamingdevicet'
+        unique_together = (('regitration_date', 'owner'), ('registered_name', 'owner'),)
+
+
+class Hasgamet(models.Model):
+    gdid = models.ForeignKey(Gamingdevicet, models.DO_NOTHING, db_column='gdid')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    backed_up = models.NullBooleanField()
+    download_date = models.DateField(blank=True, null=True)
+    version = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'hasgamet'
+        unique_together = (('gdid', 'gtid'),)
+
+
+class Messaget(models.Model):
+    gid1 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid1')
+    gid2 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid2')
+    date = models.DateField()
+    type = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=40, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    voice = models.TextField(blank=True, null=True)
+    status = models.TextField(blank=True, null=True)
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', blank=True, null=True)
+    tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'messaget'
+        unique_together = (('gid1', 'gid2', 'date'),)
 
 
 class Publishert(models.Model):
-    pid = models.AutoField(primary_key=True)
-    name = models.CharField(unique=True, max_length=50)
-    copywrite_text = models.TextField()
-    support_email = models.CharField(unique=True, max_length=255)
-    support_phone = models.CharField(unique=True, max_length=15)
-    address = models.CharField(unique=True, max_length=100)
+    pid = models.IntegerField(primary_key=True)
+    name = models.CharField(unique=True, max_length=40, blank=True, null=True)
+    copywrite_text = models.CharField(unique=True, max_length=100, blank=True, null=True)
+    support_email = models.TextField(unique=True, blank=True, null=True)
+    support_phone = models.TextField(unique=True, blank=True, null=True)
+    address = models.CharField(unique=True, max_length=200, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'publishert'
 
 
-class Gamestudiot(models.Model):
-	gsid = models.AutoField(primary_key=True)
-	pid = models.ForeignKey(Publishert, db_column='pid', on_delete=models.CASCADE)
-	name = models.CharField(max_length=50)
+class Ratet(models.Model):
+    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    date = models.DateField(blank=True, null=True)
+    mark = models.IntegerField(blank=True, null=True)
 
-	class Meta:
-		managed = False
-		db_table = 'gamestudiot'
-# Unable to inspect table 'gamestudiot'
-# The error was: list index out of range
+    class Meta:
+        managed = False
+        db_table = 'ratet'
+        unique_together = (('gid', 'gtid'),)
+
+
+class Refundt(models.Model):
+    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    date = models.DateField()
+
+    class Meta:
+        managed = False
+        db_table = 'refundt'
+        unique_together = (('gid', 'gtid', 'date'),)
+
+
+class Reviewt(models.Model):
+    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    date = models.DateField(blank=True, null=True)
+    title = models.CharField(max_length=40, blank=True, null=True)
+    reviewtext = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'reviewt'
+        unique_together = (('gid', 'gtid'),)
+
+
+class Sendgiftt(models.Model):
+    gid1 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid1')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    gid2 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid2')
+    date = models.DateField(blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'sendgiftt'
+        unique_together = (('gid1', 'gtid', 'gid2'),)
+
+
+class Trophyt(models.Model):
+    tid = models.IntegerField()
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    name = models.CharField(max_length=40, blank=True, null=True)
+    type = models.TextField(blank=True, null=True)
+    value = models.FloatField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'trophyt'
+        unique_together = (('tid', 'gtid'), ('name', 'gtid'),)
