@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'MX3.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'mmjahanara$mx3_db',
+		'NAME': 'mmjahanara$mx3_db_fix',
 		'USER': 'mmjahanara',
 		'PASSWORD': 'password8213717',
 		'HOST': 'mmjahanara.mysql.pythonanywhere-services.com',
