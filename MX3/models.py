@@ -18,7 +18,7 @@ class Bankaccountt(models.Model):
     owner = models.ForeignKey('Gamert', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'bankaccountt'
 
 
@@ -29,7 +29,7 @@ class Buyt(models.Model):
     bank_useracc_flag = models.NullBooleanField()
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'buyt'
         unique_together = (('gid', 'gtid', 'date'),)
 
@@ -42,7 +42,7 @@ class Discountt(models.Model):
     disc_percentage = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'discountt'
         unique_together = (('gtid', 'disc_date'),)
 
@@ -52,7 +52,7 @@ class Dlct(models.Model):
     main_gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='main_gtid', blank=True, null=True, related_name='+')
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'dlct'
 
 
@@ -64,7 +64,7 @@ class Feedbackt(models.Model):
     message = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'feedbackt'
         unique_together = (('gid', 'pid', 'date'),)
 
@@ -76,7 +76,7 @@ class Friendshipt(models.Model):
     status = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'friendshipt'
         unique_together = (('gid1', 'gid2'),)
 
@@ -88,7 +88,7 @@ class Gaintrophyt(models.Model):
     date = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'gaintrophyt'
         unique_together = (('tid', 'gtid', 'gid'),)
 
@@ -103,7 +103,7 @@ class Gamert(models.Model):
     user_account_balance = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'gamert'
 
 
@@ -113,7 +113,7 @@ class Gamestudiot(models.Model):
     name = models.CharField(unique=True, max_length=40, blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'gamestudiot'
         unique_together = (('gsid', 'pid'),)
 
@@ -130,7 +130,7 @@ class Gametitlet(models.Model):
     pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid', blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'gametitlet'
 
 
@@ -142,7 +142,7 @@ class Gamingdevicet(models.Model):
     registered_name = models.CharField(max_length=40, blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'gamingdevicet'
         unique_together = (('regitration_date', 'owner'), ('registered_name', 'owner'),)
 
@@ -155,7 +155,7 @@ class Hasgamet(models.Model):
     version = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'hasgamet'
         unique_together = (('gdid', 'gtid'),)
 
@@ -173,7 +173,7 @@ class Messaget(models.Model):
     tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid', blank=True, null=True, related_name='+')
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'messaget'
         unique_together = (('gid1', 'gid2', 'date'),)
 
@@ -187,7 +187,7 @@ class Publishert(models.Model):
     address = models.CharField(unique=True, max_length=200, blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'publishert'
 
 
@@ -198,7 +198,7 @@ class Ratet(models.Model):
     mark = models.IntegerField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'ratet'
         unique_together = (('gid', 'gtid'),)
 
@@ -209,7 +209,7 @@ class Refundt(models.Model):
     date = models.DateField()
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'refundt'
         unique_together = (('gid', 'gtid', 'date'),)
 
@@ -222,7 +222,7 @@ class Reviewt(models.Model):
     reviewtext = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'reviewt'
         unique_together = (('gid', 'gtid'),)
 
@@ -235,7 +235,7 @@ class Sendgiftt(models.Model):
     message = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'sendgiftt'
         unique_together = (('gid1', 'gtid', 'gid2'),)
 
@@ -249,6 +249,6 @@ class Trophyt(models.Model):
     description = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        #managed = False
         db_table = 'trophyt'
         unique_together = (('tid', 'gtid'), ('name', 'gtid'),)
