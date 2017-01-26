@@ -23,8 +23,8 @@ class Bankaccountt(models.Model):
 
 
 class Buyt(models.Model):
-    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid')
-    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid')
+    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid', related_name='+')
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid', related_name='+')
     date = models.DateField()
     bank_useracc_flag = models.NullBooleanField()
 
@@ -48,8 +48,8 @@ class Discountt(models.Model):
 
 
 class Dlct(models.Model):
-    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid', primary_key=True)
-    main_gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='main_gtid', blank=True, null=True)
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid', primary_key=True, related_name='+')
+    main_gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='main_gtid', blank=True, null=True, related_name='+')
 
     class Meta:
         managed = False
@@ -57,8 +57,8 @@ class Dlct(models.Model):
 
 
 class Feedbackt(models.Model):
-    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid')
-    pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid')
+    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid', related_name='+')
+    pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid', related_name='+')
     date = models.DateField()
     title = models.CharField(max_length=40, blank=True, null=True)
     message = models.TextField(blank=True, null=True)
@@ -70,8 +70,8 @@ class Feedbackt(models.Model):
 
 
 class Friendshipt(models.Model):
-    gid1 = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid1')
-    gid2 = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid2')
+    gid1 = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid1', related_name='+')
+    gid2 = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid2', related_name='+')
     date = models.DateField(blank=True, null=True)
     status = models.TextField(blank=True, null=True)
 
@@ -82,9 +82,9 @@ class Friendshipt(models.Model):
 
 
 class Gaintrophyt(models.Model):
-    tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid')
-    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid')
-    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid')
+    tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid', related_name='+')
+    gtid = models.ForeignKey('Gametitlet', models.DO_NOTHING, db_column='gtid', related_name='+')
+    gid = models.ForeignKey('Gamert', models.DO_NOTHING, db_column='gid', related_name='+')
     date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -148,8 +148,8 @@ class Gamingdevicet(models.Model):
 
 
 class Hasgamet(models.Model):
-    gdid = models.ForeignKey(Gamingdevicet, models.DO_NOTHING, db_column='gdid')
-    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    gdid = models.ForeignKey(Gamingdevicet, models.DO_NOTHING, db_column='gdid', related_name='+')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', related_name='+')
     backed_up = models.NullBooleanField()
     download_date = models.DateField(blank=True, null=True)
     version = models.CharField(max_length=20, blank=True, null=True)
@@ -161,16 +161,16 @@ class Hasgamet(models.Model):
 
 
 class Messaget(models.Model):
-    gid1 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid1')
-    gid2 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid2')
+    gid1 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid1', related_name='+')
+    gid2 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid2', related_name='+')
     date = models.DateField()
     type = models.TextField(blank=True, null=True)
     title = models.CharField(max_length=40, blank=True, null=True)
     text = models.TextField(blank=True, null=True)
     voice = models.TextField(blank=True, null=True)
     status = models.TextField(blank=True, null=True)
-    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', blank=True, null=True)
-    tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid', blank=True, null=True)
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', blank=True, null=True, related_name='+')
+    tid = models.ForeignKey('Trophyt', models.DO_NOTHING, db_column='tid', blank=True, null=True, related_name='+')
 
     class Meta:
         managed = False
@@ -192,8 +192,8 @@ class Publishert(models.Model):
 
 
 class Ratet(models.Model):
-    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid')
-    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid', related_name='+')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', related_name='+')
     date = models.DateField(blank=True, null=True)
     mark = models.IntegerField(blank=True, null=True)
 
@@ -204,8 +204,8 @@ class Ratet(models.Model):
 
 
 class Refundt(models.Model):
-    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid')
-    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid', related_name='+')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', related_name='+')
     date = models.DateField()
 
     class Meta:
@@ -215,8 +215,8 @@ class Refundt(models.Model):
 
 
 class Reviewt(models.Model):
-    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid')
-    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
+    gid = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid', related_name='+')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', related_name='+')
     date = models.DateField(blank=True, null=True)
     title = models.CharField(max_length=40, blank=True, null=True)
     reviewtext = models.TextField(blank=True, null=True)
@@ -228,9 +228,9 @@ class Reviewt(models.Model):
 
 
 class Sendgiftt(models.Model):
-    gid1 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid1')
-    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid')
-    gid2 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid2')
+    gid1 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid1', related_name='+')
+    gtid = models.ForeignKey(Gametitlet, models.DO_NOTHING, db_column='gtid', related_name='+')
+    gid2 = models.ForeignKey(Gamert, models.DO_NOTHING, db_column='gid2', related_name='+')
     date = models.DateField(blank=True, null=True)
     message = models.TextField(blank=True, null=True)
 
