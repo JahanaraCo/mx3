@@ -1,3 +1,4 @@
 django
 psycopg2
 mysql-python
+django_extensions
