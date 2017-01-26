@@ -1,0 +1,9 @@
+<html>
+{% for pub in publishers %}
+	<div>
+		<h1> <a href="/publisher/{{ pub.pid }}"> {{ pub.name }} </a> </h1>
+		<p> address : {{ pub.address }}</p>
+		<p> phone : {{ pub.support_phone }} </p>
+	</div>
+{% endfor %}
+</html>
