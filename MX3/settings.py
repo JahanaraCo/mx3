@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'MX3.wsgi.application'
 
 DATABASES = {
 	'default': {
-		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': 'myproject',
-		'USER': 'myprojectuser',
-		'PASSWORD': 'password',
-		'HOST': 'localhost',
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': 'mx3_db',
+		'USER': 'mmjahanara',
+		'PASSWORD': 'password8213717',
+		'HOST': 'mmjahanara.mysql.pythonanywhere-services.com',
 		'PORT': '',
 	}
 }
