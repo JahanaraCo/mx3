@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from MX3.models import Publishert, Gamestudiot, Gametitlet, Gamert  
+from MX3.models import Publishert, Gamestudiot, Gametitlet, Gamert, Buyt
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -19,7 +19,12 @@ def publisher_info(request, pid):
 
 def game_info(request, gtid):
     gametitle = Gametitlet.objects.all().get(gtid=gtid)
-    return render(request, 'game_info.html', {'game': gametitle, 'user': request.user})
+	own_this_game = False
+	if request.user.is_authenticated:
+		gid = Gamert.objects.all().get(username= user.username).gid
+		if Buyt.objects.all().filter(gid = gid, gtid = gtid).count() > 0:
+			own_this_game = True
+    return render(request, 'game_info.html', {'game': gametitle, 'user': request.user, 'own_this_game' : own_this_game})
 
 def gamer_login(request):
     if request.method == "POST":
@@ -27,7 +32,7 @@ def gamer_login(request):
         password = request.POST["password"]
         user = authenticate(username=username, password=password)
         if user is not None:
-            login(request, user) 
+            login(request, user)
             return HttpResponseRedirect('/gamer/%s'%(user.username))
         else:
             return HttpResponse('Invalid username or password! <br/> <a href="/login"> try again </a>')
@@ -47,11 +52,11 @@ def gamer_signup(request):
 
         if check_unique1.count() > 0 or check_unique2.count() > 0 or check_unique3.count() > 0:
             return HttpResponse('Invalid! <br/> <a href="/login"> try again </a>')
-        
+
         django_user = User(username = username, password = password)
-        django_user.save() 
+        django_user.save()
         user_account_balance = 0
-        gamer_gid = Gamert.objects.all().count() + 1 
+        gamer_gid = Gamert.objects.all().count() + 1
         gamer = Gamert(gamer_gid, username = username, password = password, email = email,
                 phone_number = phone_number, django_user = django_user, user_account_balance = 0)
         gamer.save()
@@ -63,7 +68,7 @@ def gamer_signup(request):
 def gamer_profile(request,username):
     gamer = Gamert.objects.all().get(username = username)
     return render(request, 'gamer_profile.html', {'gamer': gamer, 'username': username, 'user': request.user})
-   
+
 def notfound(request):
     return render(request, '404.html', {'user': request.user})
 

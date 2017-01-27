@@ -12,4 +12,18 @@
 <h4>Description: </h4> {{game.description}}
 <br />
 <h4>Publisher</h4> <a href="/publisher/{{game.pid.pid}}"> {{game.pid.name}} </a>
+<br />
+
+{% if user.is_authenticated %}
+  {% if own_this_game == False %}
+  <form id="game_buy" method="post" action="game/{{game.gtid}}">
+    {% csrf_token %}
+    <input type="submit" name="submit" value="buy" />
+  </form>
+  {% endif %}
+  {% if own_this_game == False %}
+    <p> You have this game! Let's play it now! :) </p>
+  {% endif %}
+{% endif %}
+
 {% endblock %}
