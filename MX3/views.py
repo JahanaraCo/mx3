@@ -18,7 +18,7 @@ def publisher_info(request, pid):
             'publisher_studio': pub_studio, 'publisher_games': pub_games})
 
 def game_info(request, gtid):
-    gametitle = Gametitlet.objects.all().filter(gtid=gtid)
+    gametitle = Gametitlet.objects.all().get(gtid=gtid)
     return render(request, 'game_info.html', {'game': gametitle})
 
 def gamer_login(request):
@@ -70,5 +70,5 @@ def notfound(request):
 def index(request):
     games = Gametitlet.objects.all()
     publishers = Publishert.objects.all()
-    return render(request, 'index.html', {'games': games, 'publishers': publishers})
+    return render(request, 'index.html', {'games': games, 'publishers': publishers, 'user': request.user})
 
