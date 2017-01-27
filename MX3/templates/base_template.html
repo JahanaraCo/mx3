@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>
+    {% block title %}
+    MX3 : Online Games Store!
+    {% endblock title %}
+</title>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+</style>
+</head>
+<body>
+
+
+<ul>
+    <li><a href="http://mmjahanara.pythonanywhere.com">MX3</a></li>
+    {% if user.is_authenticated %} 
+    <li><a href="/gamer/{{user.username}}">{{ user.username}}</a></li>
+    <li><a href="/logout">logout</a></li>
+    {% endif %}
+    {% if user.is_authenticated == False %}
+    <li><a href="/login">login</a></li>
+    {% endif %}
+    <li style="float:right"><a class="active" target="_blank" href="https://github.com/JahanaraCo/mx3">Git Repository</a></li>
+</ul>
+
+{% block content %}
+{% endblock content %}
+
+</body>
+</html>
+
