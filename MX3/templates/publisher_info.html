@@ -1,7 +1,11 @@
 <html>
 <h1> {{ publisher.name }} <h1>
-
+<h5> address : {{ publisher.address }}</h5>
+<h5> phone : {{ publisher.support_phone }} </h5>
+<br/>
+<h3> Games : </h3>
 {% for studio in publisher_studio %}
-	<h2><a href=""> {{studio.name}} </a><h2>
+	<h5><a href=""> {{studio.name}} </a><h5>
 {% endfor %}
+
 </html>
