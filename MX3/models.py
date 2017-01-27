@@ -11,7 +11,7 @@ from django.db import models
 
 
 class Bankaccountt(models.Model):
-    card_number = models.TextField(primary_key=True)
+    card_number = models.CharField(max_length=15, primary_key=True)
     cvv2 = models.TextField(blank=True, null=True)
     exp_date = models.DateField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -96,10 +96,10 @@ class Gaintrophyt(models.Model):
 class Gamert(models.Model):
     gid = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=40, blank=True, null=True)
-    username = models.TextField(unique=True, blank=True, null=True)
+    username = models.CharField(max_length=25, unique=True, blank=True, null=True)
     password = models.TextField(blank=True, null=True)
-    email = models.TextField(unique=True, blank=True, null=True)
-    phone_number = models.TextField(unique=True, blank=True, null=True)
+    email = models.CharField(max_length=255, unique=True, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, unique=True, blank=True, null=True)
     user_account_balance = models.FloatField(blank=True, null=True)
 
     class Meta:
@@ -182,8 +182,8 @@ class Publishert(models.Model):
     pid = models.IntegerField(primary_key=True)
     name = models.CharField(unique=True, max_length=40, blank=True, null=True)
     copywrite_text = models.CharField(unique=True, max_length=100, blank=True, null=True)
-    support_email = models.TextField(unique=True, blank=True, null=True)
-    support_phone = models.TextField(unique=True, blank=True, null=True)
+    support_email = models.CharField(max_length=255, unique=True, blank=True, null=True)
+    support_phone = models.CharField(max_length=15, unique=True, blank=True, null=True)
     address = models.CharField(unique=True, max_length=200, blank=True, null=True)
 
     class Meta:
