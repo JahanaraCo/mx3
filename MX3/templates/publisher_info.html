@@ -1,4 +1,6 @@
-<html>
+{% extends "base_template.html" %}
+
+{% block content %}
 <h1> {{ publisher.name }} <h1>
 <h5> address : {{ publisher.address }}</h5>
 <h5> phone : {{ publisher.support_phone }} </h5>
@@ -12,4 +14,4 @@
 {% for game in publisher_games %}
     <h5><a href="/game/{{ game.gtid}}"> {{game.name}} </a></h5>
 {% endfor %}
-</html>
+{% endblock %}

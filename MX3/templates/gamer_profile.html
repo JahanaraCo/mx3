@@ -1,6 +1,8 @@
-<html>
+{% extends "base_template.html" %}
+
+{% block content %}
 <h1> {{ gamer.username}} </h1>
 <h4> {{ gamer.name}} </h4>
 <br />
 <a href="/logout"> logout </a>
-</html>
+{% endblock %}

@@ -40,12 +40,13 @@ li a:hover:not(.active) {
 
 <ul>
     <li><a href="http://mmjahanara.pythonanywhere.com">MX3</a></li>
-    {% if user.is_authenticated %} 
+    {% if user.is_authenticated %}
     <li><a href="/gamer/{{user.username}}">{{ user.username}}</a></li>
     <li><a href="/logout">logout</a></li>
     {% endif %}
     {% if user.is_authenticated == False %}
     <li><a href="/login">login</a></li>
+    <li><a href="/signup">singup</a></li>
     {% endif %}
     <li style="float:right"><a class="active" target="_blank" href="https://github.com/JahanaraCo/mx3">Git Repository</a></li>
 </ul>
@@ -55,4 +56,3 @@ li a:hover:not(.active) {
 
 </body>
 </html>
-

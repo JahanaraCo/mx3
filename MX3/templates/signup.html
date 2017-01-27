@@ -1,18 +1,16 @@
-<HTML>
-<HEADER>
-    <TITLE>MX3 : SignUp</TITLE>
-</HEADER>
-<BODY>
+{% extends "base_template.html" %}
+
+{% block content %}
 <FORM id="signup_form" method="post" action="/signup/">
     {% csrf_token %}
     <table>
         <tr>
             <th>
                 Username:
-            </th> 
+            </th>
             <th>
                 <input type="text" name="username" value="" id="username" size="50" />
-            </th> 
+            </th>
         </tr>
         <tr>
             <th>
@@ -28,7 +26,7 @@
             </th>
             <th>
                 <input type="text" name="name" id="name" size="50" />
-            </th>    
+            </th>
         </tr>
         <tr>
             <th>
@@ -36,7 +34,7 @@
             </th>
             <th>
                 <input type="text" name="email" id="email" size="50" />
-            </th>    
+            </th>
         </tr>
         <tr>
             <th>
@@ -44,12 +42,9 @@
             </th>
             <th>
                 <input type="text" name="phone" id="phone" size="50"/>
-            </th>    
+            </th>
         </tr>
     </table>
     <INPUT type="submit" name="submit" value="submit" />
 </FORM>
-</BODY>
-</HTML>
-
-
+{% endblock %}

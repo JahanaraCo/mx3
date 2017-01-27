@@ -1,8 +1,6 @@
-<HTML>
-<HEADER>
-    <TITLE>MX3 : Login</TITLE>
-</HEADER>
-<BODY>
+{% extends "base_template.html" %}
+
+{% block content %}
 <FORM id="login_form" method="post" action="/login/">
     {% csrf_token %}
     Username:
@@ -13,7 +11,4 @@
     <br />
     <INPUT type="submit" name="submit" value="submit" />
 </FORM>
-</BODY>
-</HTML>
-
-
+{% endblock %}
