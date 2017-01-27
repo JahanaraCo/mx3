@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^signup/$', views.gamer_signup, name='gamer_signup'),
     url(r'^$', views.index, name='index'),
     url(r'^game/(?P<gtid>\d+)/$', views.game_info, name='game_info'),
+	url(r'^logout/$', views.logout, name='logout'),
 ]

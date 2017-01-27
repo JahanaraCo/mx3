@@ -72,3 +72,6 @@ def index(request):
     publishers = Publishert.objects.all()
     return render(request, 'index.html', {'games': games, 'publishers': publishers, 'user': request.user, 'user': request.user})
 
+def logout(request):
+	logout(request)
+	return HttpResponseRedirect('/')
