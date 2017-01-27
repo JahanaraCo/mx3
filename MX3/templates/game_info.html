@@ -18,7 +18,7 @@
 <center>
 {% if user.is_authenticated %}
   {% if own_this_game == False %}
-  <form id="game_buy" method="post" action="game/{{game.gtid}}">
+  <form id="game_buy" method="post" action="/game/{{game.gtid}}/">
     {% csrf_token %}
     <input type="submit" name="submit" value="buy" />
   </form>

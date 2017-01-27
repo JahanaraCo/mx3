@@ -2,6 +2,10 @@
 
 {% block content %}
 <center>
+    <br/>
+    <p style="color:red;">
+    note: password should be longther than 8 character and should contains character and numbers!
+    </p>
 <FORM id="signup_form" method="post" action="/signup/">
     {% csrf_token %}
     <table>

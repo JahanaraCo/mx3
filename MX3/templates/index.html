@@ -1,34 +1,74 @@
 {% extends "base_template.html" %}
 
-{% block content %}
-<h2>Games : </h2>
-<div id="top_games">
-    {% for game in games %}
-    <div>
-        <a href="/game/{{ game.gtid }}"> {{game.name}} </a>
-        <p> version : {{game.version}} </p>
-        <p> gener : {{game.gener}} </p>
-    </div>
-    <br />
-    {% endfor %}
-</div>
-<h2>Publishers : </h2>
-<div id="top_publishers">
-    {% for publisher in publishers %}   
-    <div>
-        <a href="/publisher/{{ publisher.pid }}"> {{publisher.name}} </a>
-    </div>
-    <br />
-    {% endfor %}
-</div>
+{% block added_style %}
+table {
+border-collapse: collapse;
+width: 100%;
+}
 
-<h2>Gamers : </h2>
-<div id="top_gamers">
-    {% for gamer in gamers %}   
-    <div>
-        <a href="/gamer/{{ gamer.username }}"> {{gamer.username}} </a>
-    </div>
-    <br />
+th, td {
+text-align: left;
+padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+background-color: #111;
+color: white;
+}
+
+table a {
+  transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+    }
+
+table a:link,
+table a:visited { color: #265C83; }
+table a:hover   { color: #052938; }
+table a:active  {
+      transition: color .3s;
+        color: #007BE6;
+        }
+table 
+{% endblock %}
+
+{% block content %}
+<br/> 
+<table> <tr>
+    <th>Games</th>
+    </tr>
+    {% for game in games %}
+    <tr><td>
+        <a href="/game/{{ game.gtid }}"> {{game.name}} </a>
+        <br/> version : {{game.version}}
+        <br/> gener : {{game.gener}}
+    </td></tr>
     {% endfor %}
-</div>
+</table>
+
+<br/>
+
+<table><tr>
+        <th>Publishers</th>
+    </tr>
+    {% for publisher in publishers %}   
+    <tr><td>    
+    <a href="/publisher/{{ publisher.pid }}"> {{publisher.name}} </a>
+    </td></tr>
+    {% endfor %}
+</table>
+
+<br/>
+
+<table>
+    <tr>
+    <th> Gamers </th>
+    {% for gamer in gamers %}   
+    <tr><td>    
+    <a href="/gamer/{{ gamer.username }}"> {{gamer.username}} </a>
+    </td></tr>
+    {% endfor %}
+</table>
 {% endblock %}
