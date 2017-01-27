@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^publisher/(?P<pid>\d+)/$', views.publisher_info, name='publisher_info'),
     url(r'^publishers/$', views.publishers_list, name='publishers_list'),
+    url(r'^login/$', views.gamer_login, name='gamer_login'),
+    url(r'^gamer/(?P<pid>\d+)/$', views.gamer_profile, name='gamer_profile'),
 ]

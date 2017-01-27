@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -101,6 +102,10 @@ class Gamert(models.Model):
     email = models.CharField(max_length=255, unique=True, blank=True, null=True)
     phone_number = models.CharField(max_length=15, unique=True, blank=True, null=True)
     user_account_balance = models.FloatField(blank=True, null=True)
+    django_user = models.ForeignKey(User)
+
+    def __str__(self):
+        return '%s [%s]'%(self.username,self.name)
 
     class Meta:
         #managed = False
@@ -111,6 +116,9 @@ class Gamestudiot(models.Model):
     gsid = models.IntegerField()
     pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid')
     name = models.CharField(unique=True, max_length=40, blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
 
     class Meta:
         #managed = False
@@ -128,6 +136,9 @@ class Gametitlet(models.Model):
     mp_support = models.NullBooleanField()
     refund_duration = models.IntegerField(blank=True, null=True)
     pid = models.ForeignKey('Publishert', models.DO_NOTHING, db_column='pid', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         #managed = False
@@ -186,6 +197,9 @@ class Publishert(models.Model):
     support_phone = models.CharField(max_length=15, unique=True, blank=True, null=True)
     address = models.CharField(unique=True, max_length=200, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+    
     class Meta:
         #managed = False
         db_table = 'publishert'
