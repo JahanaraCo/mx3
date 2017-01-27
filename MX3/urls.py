@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from . import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^publisher/(?P<pid>\d+)/$', views.publisher_info, name='publisher_info'),
+    url(r'^publishers/$', views.publishers_list, name='publishers_list'),
 ]
