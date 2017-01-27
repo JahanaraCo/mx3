@@ -19,6 +19,17 @@ def publisher_info(request, pid):
 
 def game_info(request, gtid):
     gametitle = Gametitlet.objects.all().get(gtid=gtid)
+
+	if request.method == "POST":
+		gamer = Gamert.objects.all().get(username= request.user.username)
+		if gamer.user_account_balance < gametitle.price:
+            return HttpResponse('your balance is not enough! <br/> <a href="/game/%s"> back to game page </a>'%gametitle.gtid)
+		gamer.user_account_balance -= gametitle.price
+		gamer.save()
+		buy = Buyt(gid=gamer.gid, gtid=gametitle.gtid, date=datetime.now())
+		buy.save()
+		return HttpResponse('you bought this game!  <br/> <a href="/game/%s"> back to game page </a>'%gametitle.gtid)
+
     own_this_game = False
     if request.user.is_authenticated:
     	gid = Gamert.objects.all().get(username= request.user.username).gid
