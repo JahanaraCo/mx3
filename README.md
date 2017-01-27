@@ -12,14 +12,20 @@ check it online at : http://mmjahanara.pythonanywhere.com
 
 present pages:
 
-/publishers           list of game publishers
+/publishers/:
+list of game publishers
 
-/publisher/< pid >    publisher < pid > information, its published games and known gamestudios
+/publisher/< pid >/:
+publisher < pid > information, its published games and known gamestudios
 
-/gamer/< username >   gamer < username > information
+/gamer/< username >/:
+gamer < username > information
 
-/login/               gamers login gate
+/login/:
+gamers login gate
 
-/logout/              gamer logout
+/logout/:
+gamer logout
 
-/signup/              new gamer signup
+/signup/:
+new gamer signup
