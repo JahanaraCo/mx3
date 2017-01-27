@@ -1,14 +1,19 @@
 {% extends "base_template.html" %}
 
 {% block content %}
+<center>
 <FORM id="login_form" method="post" action="/login/">
     {% csrf_token %}
+    <table><tr><th>
     Username:
+    </th><th>
     <input type="text" name="username" value="" id="username" size="50" />
-    <br />
+    </th></tr><tr><th>
     Password:
+    </th><th>
     <input type="password" name="password" value="" id="password" size="50" />
-    <br />
+    </th></tr></table>
     <INPUT type="submit" name="submit" value="submit" />
 </FORM>
+</center>
 {% endblock %}
