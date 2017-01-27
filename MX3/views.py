@@ -19,11 +19,11 @@ def publisher_info(request, pid):
 
 def game_info(request, gtid):
     gametitle = Gametitlet.objects.all().get(gtid=gtid)
-	own_this_game = False
-	if request.user.is_authenticated:
-		gid = Gamert.objects.all().get(username= user.username).gid
-		if Buyt.objects.all().filter(gid = gid, gtid = gtid).count() > 0:
-			own_this_game = True
+    own_this_game = False
+    if request.user.is_authenticated:
+    	gid = Gamert.objects.all().get(username= request.user.username).gid
+    	if Buyt.objects.all().filter(gid = gid, gtid = gtid).count() > 0:
+            own_this_game = True
     return render(request, 'game_info.html', {'game': gametitle, 'user': request.user, 'own_this_game' : own_this_game})
 
 def gamer_login(request):
@@ -75,7 +75,9 @@ def notfound(request):
 def index(request):
     games = Gametitlet.objects.all()
     publishers = Publishert.objects.all()
-    return render(request, 'index.html', {'games': games, 'publishers': publishers, 'user': request.user, 'user': request.user})
+    gamers = Gamert.objects.all()
+    return render(request, 'index.html', {'games': games, 'publishers': publishers, 'user': request.user, 'user': request.user,
+        'gamers': gamers})
 
 def gamer_logout(request):
 	logout(request)

@@ -4,5 +4,8 @@
 <h1> {{ gamer.username}} </h1>
 <h4> {{ gamer.name}} </h4>
 <br />
-<a href="/logout"> logout </a>
+
+{% if user.is_authenticated and user.username == gamer.username %}
+<h4> Balance:</h4> {{gamer.user_account_balance}}
+{% endif %}
 {% endblock %}
