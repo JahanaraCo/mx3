@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'^publisher/(?P<pid>\d+)/$', views.publisher_info, name='publisher_info'),
     url(r'^publishers/$', views.publishers_list, name='publishers_list'),
     url(r'^login/$', views.gamer_login, name='gamer_login'),
-    url(r'^gamer/(?P<pid>\d+)/$', views.gamer_profile, name='gamer_profile'),
+    url(r'^gamer/(?P<username>[\w\-]+)/$', views.gamer_profile, name='gamer_profile'),
+    url(r'^signup/$', views.gamer_signup, name='gamer_signup'),
+    url(r'^$', views.notfound, name='notfound'),
 ]
