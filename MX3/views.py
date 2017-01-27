@@ -66,3 +66,9 @@ def gamer_profile(request,username):
    
 def notfound(request):
     return render(request, '404.html')
+
+def index(request):
+    games = Gametitlet.objects.all()
+    publishers = Publishert.objects.all()
+    return render(request, 'index.html', {'games': games, 'publishers': publishers})
+

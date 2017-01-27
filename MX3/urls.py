@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^login/$', views.gamer_login, name='gamer_login'),
     url(r'^gamer/(?P<username>[\w\-]+)/$', views.gamer_profile, name='gamer_profile'),
     url(r'^signup/$', views.gamer_signup, name='gamer_signup'),
-    url(r'^$', views.notfound, name='notfound'),
+    url(r'^$', views.index, name='index'),
 ]

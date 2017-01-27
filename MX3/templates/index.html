@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>
+    MX3 : Online Game's Store and Social Network!
+</title>
+</head>
+<body>
+<h2> new games : </h2>
+<div id="top_games">
+    {% for game in games %}
+    <div>
+        <a href="/game/{{ game.gid }}"> {{game.name}} </a>
+        <p> version : {{game.version}} </p>
+        <p> gener : {{game.gener}} </p>
+    </div>
+    <br />
+    {% endfor %}
+</div>
+<h2> new publishers : </h2>
+<div id="top_publishers">
+    {% for publisher in publishers %}   
+    <div>
+        <a href="/publisher/{{ publisher.pid }}"> {{publisher.name}} </a>
+    </div>
+    <br />
+    {% endfor %}
+</div>
+</body>
+</html>
+
