@@ -1,11 +1,25 @@
-MX3 : an online game store and social network for gamers !
+###MX3 : an online game store and social network for gamers !
 
-part of our database project [ce department @ sharif university]
+This is part of our project in database design course [ce department @ sharif university]
 
-mohsen mohebzade
+Mohsen Mohebzade
 
-mohammad mahdi fariyabi
+Mohammad Mahdi Fariyabi
 
-mohammad mahdi jahanara
+Mohammad Mahdi Jahanara
 
 check it online at : http://mmjahanara.pythonanywhere.com
+
+present pages:
+
+/publishers           list of game publishers
+
+/publisher/< pid >    publisher < pid > information, its published games and known gamestudios
+
+/gamer/< username >   gamer < username > information
+
+/login/               gamers login gate
+
+/logout/              gamer logout
+
+/signup/              new gamer signup
