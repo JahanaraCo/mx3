@@ -3,9 +3,13 @@
 <h5> address : {{ publisher.address }}</h5>
 <h5> phone : {{ publisher.support_phone }} </h5>
 <br/>
-<h3> Games : </h3>
+<h3> Game Studios : </h3>
 {% for studio in publisher_studio %}
-	<h5><a href=""> {{studio.name}} </a><h5>
+    <h5><a href="/gamestudio/{{ studio.gsid }}"> {{studio.name}} </a></h5>
 {% endfor %}
-
+<br/>
+<h3> Game Titles :</h3>
+{% for game in publisher_games %}
+    <h5><a href="/game/{{ game.gtid}}"> {{game.name}} </a></h5>
+{% endfor %}
 </html>
